@@ -1,0 +1,41 @@
+services:
+  ubuntu_comp0244_ros:
+    build:
+      context: .
+      dockerfile: Dockerfile_ros2_humble_go2
+    container_name: comp0244_ros_nvidia
+    # defined ulimits (for arach-linux)
+    ulimits:
+      nofile:
+        soft: 524288
+        hard: 524288
+    network_mode: host
+    privileged: true
+    stdin_open: true
+    tty: true
+    working_dir: /home
+    # Enabling Nvidia GPUs
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    # Environment variables passed to the container
+    environment:
+      - "DISPLAY"
+      - "QT_X11_NO_MITSHM=1"
+      - XAUTHORITY=/tmp/.docker.xauth
+      # for hybrid graphics
+      - "__NV_PRIME_RENDER_OFFLOAD=1"
+      - "__GLX_VENDOR_LIBRARY_NAME=nvidia"
+      - "NVIDIA_VISIBLE_DEVICES=all"
+      - "NVIDIA_DRIVER_CAPABILITIES=all"
+    # This mounts the host directories into the container
+    volumes:
+      # This mounts the X11 socket into the container so that GUIs can be displayed
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /dev/input:/dev/input
+      - /dev/bus/usb:/dev/bus/usb:rw
+      - /home/$USER:/home/$USER:rw

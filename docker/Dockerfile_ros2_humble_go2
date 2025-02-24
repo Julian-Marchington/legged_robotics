@@ -1,0 +1,21 @@
+##################################################
+###### Dockerfile for Unitree Robot-GO2 ROS2
+##################################################
+# FROM jjiao/comp0244:unitree-go-ros2-humble
+FROM jjiao/comp0244:unitree-go-ros2-humble
+LABEL maintainer="gogojjh <jiaojh1994@gmail.com>"
+
+############### Path Parameters
+ENV XDG_RUNTIME_DIR=/tmp/runtime-root
+RUN mkdir -p $XDG_RUNTIME_DIR && chmod 700 $XDG_RUNTIME_DIR
+
+############### Basic Ubuntu command
+RUN mkdir -p /usr/app
+RUN apt-get update 
+RUN apt install -y cmake 
+
+# Unitree ROS2 package
+ENV ROS_DISTRO=humble
+RUN bash /opt/ros/${ROS_DISTRO}/setup.bash
+RUN apt update 
+RUN apt install -y ros-${ROS_DISTRO}-gazebo-*

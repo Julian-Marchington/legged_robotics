@@ -1,0 +1,21 @@
+[submodule "src/livox_ros_driver2"]
+	path = src/livox_ros_driver2
+	url = git@github.com:COMP0244-S25/livox_ros_driver2
+[submodule "src/unitree-go2-ros2"]
+	path = src/unitree-go2-ros2
+	url = git@github.com:COMP0244-S25/unitree-go2-ros2.git
+[submodule "src/livox_laser_simulation_RO2"]
+	path = src/livox_laser_simulation_RO2
+	url = git@github.com:COMP0244-S25/livox_laser_simulation_RO2
+[submodule "src/FAST_LIO"]
+	path = src/FAST_LIO
+	url = git@github.com:COMP0244-S25/FAST_LIO.git
+[submodule "src/waypoint_follower"]
+	path = src/waypoint_follower
+	url = git@github.com:COMP0244-S25/waypoint_follower.git
+[submodule "src/local_map_creator"]
+	path = src/local_map_creator
+	url = git@github.com:COMP0244-S25/local_map_creator.git
+[submodule "src/edge_follower"]
+	path = src/edge_follower
+	url = git@github.com:COMP0244-S25/edge_follower.git
